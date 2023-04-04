@@ -19,21 +19,61 @@ import {
   WriterWrapper,
   Youtube,
   Zipcode,
-  ZipcodeWrapper
+  ZipcodeWrapper,
+  Error
 } from "../../../styles/emotion";
 
+import { useDebugValue, useState } from "react";
+
 export default function BoardWriteUI() {
+  const [id, setId] = useState("")
+  const [password, setPassword] = useState("")
+  const [errorId, setErrorId] = useState("")
+  const [errorPw, setErrorPw] = useState("")
+
+  function handleChangeId(event) {
+    const value = event.target.value;
+    setId(value);
+  }
+
+  function handleChangePassword(event) {
+    const value = event.target.value;
+    setPassword(value);
+  }
+
+  function handleClickSignup(event) {
+    if (id === "") {
+      setErrorId("아이디를 똑바로 입력하세요.")
+    } else {
+      setErrorId("")
+    }
+    
+    if (password === "") {
+      setErrorPw("비밀번호를 똑바로 입력하세요")
+    } else {
+      setErrorPw("")
+    }
+    
+    if (id !== "" && password !== "") {
+      alert("로그인에 성공하셨습니다.")
+    }
+  }
+
+
   return (
     <Wrapper>
       <Title>게시글 등록</Title>
       <WriterWrapper>
         <InputWrapper>
           <Label>작성자</Label>
-          <Writer type="text" placeholder="이름을 적어주세요." />
+          <Writer type="text" placeholder="이름을 적어주세요." onChange={handleChangeId}/>
+          <Error>{errorId}</Error>
+          
         </InputWrapper>
         <InputWrapper>
           <Label>비밀번호</Label>
-          <Password type="password" placeholder="비밀번호를 작성해주세요." />
+          <Password type="password" placeholder="비밀번호를 작성해주세요." onChange={handleChangePassword}/>
+          <Error>{errorPw}</Error>
         </InputWrapper>
       </WriterWrapper>
       <InputWrapper>
@@ -71,7 +111,7 @@ export default function BoardWriteUI() {
         <RadioLabel htmlFor="image">사진</RadioLabel>
       </OptionWrapper>
       <ButtonWrapper>
-        <SubmitButton>등록하기</SubmitButton>
+        <SubmitButton onClick={handleClickSignup}>등록하기</SubmitButton>
       </ButtonWrapper>
     </Wrapper>
   );

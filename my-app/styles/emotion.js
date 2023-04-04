@@ -31,6 +31,7 @@ export const WriterWrapper = styled.div`
 `;
 
 export const Writer = styled.input`
+  display: block;
   width: 486px;
   height: 52px;
   padding-left: 16px;
@@ -38,6 +39,7 @@ export const Writer = styled.input`
 `;
 
 export const Password = styled.input`
+  display: block;
   width: 486px;
   height: 52px;
   padding-left: 16px;
