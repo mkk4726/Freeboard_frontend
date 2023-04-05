@@ -24,16 +24,42 @@ import {
 } from "../../../styles/emotion";
 
 import { useDebugValue, useState } from "react";
+import { useMutation, gql } from "@apollo/client";
+
+const CREATE_BOARD = gql`
+  mutation createBoard($writer: String, $title: String, $contents: String){
+    createBoard(writer: $writer, title: $title, contents: $contents) {
+      _id,
+      number,
+      message
+    }
+  }
+`
 
 export default function BoardWriteUI() {
   const [id, setId] = useState("")
+  const [title, setTitle] = useState("")
+  const [contents, setContents] = useState("")
   const [password, setPassword] = useState("")
+
   const [errorId, setErrorId] = useState("")
   const [errorPw, setErrorPw] = useState("")
+  const [errorTitle, setErrorTitle] = useState("")
+  const [errorContents, setErrorContents] = useState("")
+
+  const [myCreateBoard] = useMutation(CREATE_BOARD);
 
   function handleChangeId(event) {
     const value = event.target.value;
     setId(value);
+  }
+  function handleChangeTitle(event) {
+    const value = event.target.value;
+    setTitle(value);
+  }
+  function handleChangeContents(event) {
+    const value = event.target.value;
+    setContents(value);
   }
 
   function handleChangePassword(event) {
@@ -41,21 +67,39 @@ export default function BoardWriteUI() {
     setPassword(value);
   }
 
-  function handleClickSignup(event) {
-    if (id === "") {
+  async function handleClickSignup(event) {
+    if (!id) {
       setErrorId("아이디를 똑바로 입력하세요.")
     } else {
       setErrorId("")
     }
     
-    if (password === "") {
+    if (!password) {
       setErrorPw("비밀번호를 똑바로 입력하세요")
     } else {
       setErrorPw("")
     }
     
-    if (id !== "" && password !== "") {
-      alert("로그인에 성공하셨습니다.")
+    if (!title) {
+      setErrorTitle("제목을 입력해주세요")
+    } else {
+      setErrorTitle("")
+    }
+
+    if (!contents) {
+      setErrorContents("내용을 입력해주세요")
+    } else {
+      setErrorContents("")
+    }
+    if (id && password && title && contents) {
+      let result = await myCreateBoard({
+        variables: {
+          writer: id,
+          title: title,
+          contents: contents
+        }
+      });
+      alert(result.data.createBoard.message);
     }
   }
 
@@ -78,11 +122,13 @@ export default function BoardWriteUI() {
       </WriterWrapper>
       <InputWrapper>
         <Label>제목</Label>
-        <Subject type="text" placeholder="제목을 작성해주세요." />
+        <Subject type="text" placeholder="제목을 작성해주세요." onChange={handleChangeTitle}/>
+        <Error>{errorTitle}</Error>
       </InputWrapper>
       <InputWrapper>
         <Label>내용</Label>
-        <Contents placeholder="내용을 작성해주세요." />
+        <Contents placeholder="내용을 작성해주세요." onChange={handleChangeContents}/>
+        <Error>{errorContents}</Error>
       </InputWrapper>
       <InputWrapper>
         <Label>주소</Label>
