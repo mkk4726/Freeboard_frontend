@@ -25,6 +25,7 @@ import {
 
 import { useDebugValue, useState } from "react";
 import { useMutation, gql } from "@apollo/client";
+import { useRouter } from "next/dist/client/router";
 
 const CREATE_BOARD = gql`
   mutation createBoard($writer: String, $title: String, $contents: String){
@@ -48,6 +49,8 @@ export default function BoardWriteUI() {
   const [errorContents, setErrorContents] = useState("")
 
   const [myCreateBoard] = useMutation(CREATE_BOARD);
+
+  const router = useRouter();
 
   function handleChangeId(event) {
     const value = event.target.value;
@@ -92,14 +95,21 @@ export default function BoardWriteUI() {
       setErrorContents("")
     }
     if (id && password && title && contents) {
-      let result = await myCreateBoard({
-        variables: {
-          writer: id,
-          title: title,
-          contents: contents
-        }
-      });
-      alert(result.data.createBoard.message);
+      try {
+        let result = await myCreateBoard({
+          variables: {
+            writer: id,
+            title: title,
+            contents: contents
+          }
+        });
+        alert(result.data.createBoard.message);
+        router.push(`/boards/${result.data.createBoard.number}`);
+
+      } 
+      catch(err) {
+        alert(err);
+      }
     }
   }
 
