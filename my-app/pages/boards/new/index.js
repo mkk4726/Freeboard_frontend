@@ -28,11 +28,9 @@ import { useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/dist/client/router";
 
 const CREATE_BOARD = gql`
-  mutation createBoard($writer: String, $title: String, $contents: String){
-    createBoard(writer: $writer, title: $title, contents: $contents) {
-      _id,
-      number,
-      message
+  mutation createBoard($createBoardInput: CreateBoardInput!){
+    createBoard(createBoardInput: $createBoardInput) {
+      _id
     }
   }
 `
@@ -97,17 +95,23 @@ export default function BoardWriteUI() {
     if (id && password && title && contents) {
       try {
         let result = await myCreateBoard({
-          variables: {
-            writer: id,
-            title: title,
-            contents: contents
+          variables: { 
+            createBoardInput : {
+              writer: id,
+              password,
+              title,
+              contents 
+            }
           }
         });
-        alert(result.data.createBoard.message);
-        router.push(`/boards/${result.data.createBoard.number}`);
+        console.log(result);
+        // alert(result.data.createBoard.message);
+        alert("생성한 페이지로 이동합니다.")
+        router.push(`/boards/${result.data.createBoard._id}`);
 
       } 
       catch(err) {
+        console.log(err);
         alert(err);
       }
     }
