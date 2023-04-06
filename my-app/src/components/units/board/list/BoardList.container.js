@@ -8,14 +8,19 @@ export default function BoardList() {
 
   const router = useRouter();
 
-  const onClickNew = () => {
+  const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
+  }
+
+  const onClickMoveToBoardDetail = (event) => {
+    router.push(`/boards/${event.target.id}`);
   }
 
   return(
     <BoardListUI 
       data={ data }
-      onClickNew={ onClickNew }
+      onClickNew={ onClickMoveToBoardNew }
+      onClickMoveToBoardDetail={onClickMoveToBoardDetail}
     />
   )
 }

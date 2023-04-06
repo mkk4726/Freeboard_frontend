@@ -5,8 +5,17 @@ export const Wrapper = styled.div`
   margin: 100px 0px 0px 100px;
 `
 
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  border: none;
+  border-top: 3px solid gray;
+  padding: 20px;
+  text-align: center;
+`
+
 export const UpperLine = styled.div`
-  border-top: 3px solid black;
+  border-top: 1px solid black;
 `
 
 export const LowerLine = styled.div`
@@ -15,9 +24,9 @@ export const LowerLine = styled.div`
 
 export const Board = styled.div`
   display:flex;
-  justify-content: space-evenly;
   width: 100%;
   padding: 20px;
+  text-align: center;
 `
 
 export const Id = styled.div`
@@ -26,6 +35,11 @@ export const Id = styled.div`
 
 export const Title = styled.div`
   width: 40%;
+  cursor: pointer;
+
+  :hover {
+    color: blue;
+  }
 `
 export const Writer = styled.div`
   width: 15%;
