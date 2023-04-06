@@ -49,11 +49,8 @@ export const Password = styled.input`
 export const Label = styled.div`
   padding-bottom: 16px;
   font-size: 16px;
-  font-weight: ${(props) => {props.qqq}};
-  color: ${(props) => {
-    return props.qqq;
-  }}
-`;
+  font-weight: 400;
+`
 
 export const InputWrapper = styled.div`
   padding-top: 40px;

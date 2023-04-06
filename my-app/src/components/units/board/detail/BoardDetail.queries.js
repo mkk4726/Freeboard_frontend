@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client"
 
 export const FETCH_BORDER = gql`
-  query fetchBoard($boardId: ID!){
+  query fetchBoard($boardId: ID!) {
     fetchBoard(boardId: $boardId) {
       _id,
       writer,
@@ -10,4 +10,4 @@ export const FETCH_BORDER = gql`
       createdAt
     }
   }
-`
+`;
