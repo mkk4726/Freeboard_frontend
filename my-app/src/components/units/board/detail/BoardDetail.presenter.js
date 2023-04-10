@@ -1,6 +1,6 @@
 import * as e from "./BoardDetail.styles";
 
-export default function BoardDetailUI({data, onClickList}) {
+export default function BoardDetailUI({data, onClickList, onClickEdit}) {
   return(
     <e.Wrapper>
       <e.CardWrapper>
@@ -22,7 +22,7 @@ export default function BoardDetailUI({data, onClickList}) {
       </e.CardWrapper>
       <e.BottomWrapper>
         <e.Button onClick={onClickList}>목록으로</e.Button>
-        <e.Button>수정하기</e.Button>
+        <e.Button onClick={onClickEdit}>수정하기</e.Button>
         <e.Button>삭제하기</e.Button>
       </e.BottomWrapper>
     </e.Wrapper>

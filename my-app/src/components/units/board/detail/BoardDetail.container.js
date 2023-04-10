@@ -14,10 +14,15 @@ export default function BoardDetail() {
     router.push('/boards')
   }
 
+  const onClickEdit = () => {
+    router.push(`/boards/${router.query.boardId}/edit`)
+  }
+
   return (
     <BoardDetailUI 
       data = {data}
       onClickList = {onClickList}
+      onClickEdit={onClickEdit}
     />
   )
 }

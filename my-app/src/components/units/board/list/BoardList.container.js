@@ -10,6 +10,7 @@ export default function BoardList() {
 
   const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
+    console.log('movetosubmit')
   }
 
   const onClickMoveToBoardDetail = (event) => {
@@ -19,7 +20,7 @@ export default function BoardList() {
   return(
     <BoardListUI 
       data={ data }
-      onClickNew={ onClickMoveToBoardNew }
+      onClickMoveToBoardNew={ onClickMoveToBoardNew }
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
     />
   )

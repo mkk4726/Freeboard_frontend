@@ -27,8 +27,8 @@ export default function BoardListUI({
       <S.LowerLine/>
       <S.Footer>
         <S.Button onClick={onClickMoveToBoardNew}>
-          <S.PencilIcon src="/images/board/list/write.png" />
-          게시물 등l록하기
+          <S.PencilIcon src="/images/board/list/write.png" /> 
+          게시물 등록하기
         </S.Button>
       </S.Footer>
     </S.Wrapper>
