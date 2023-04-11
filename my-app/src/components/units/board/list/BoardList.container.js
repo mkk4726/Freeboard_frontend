@@ -10,7 +10,6 @@ export default function BoardList() {
 
   const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
-    console.log('movetosubmit')
   }
 
   const onClickMoveToBoardDetail = (event) => {
