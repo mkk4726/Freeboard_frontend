@@ -16,7 +16,7 @@ export default function BoardCommentList() {
     try {
       await deleteBoardComment({
         variables: {
-          passwords: myPassword,
+          password: myPassword,
           boardCommentId: event.target.id
         },
         refetchQueries : [
