@@ -27,7 +27,7 @@ export default function BoardCommentList() {
       await deleteBoardComment({
         variables: {
           password: myPassword,
-          boardCommentId: event?.target?.id
+          boardCommentId: event.currentTarget.id // Event Bubbling 현상 때문에. 
         },
         refetchQueries : [
           {
