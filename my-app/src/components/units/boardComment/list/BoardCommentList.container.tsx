@@ -41,10 +41,16 @@ export default function BoardCommentList() {
     }
   }
 
+  const onClickComment = (event: MouseEvent<HTMLDivElement>) => {
+    console.log(event)
+    alert(`${event.target.id}님이 작성한 글입니다.`);
+  }
+
   return (
     <BoardCommentListUI 
       data={data}
       onClickDelete={onClickDelete}
+      onClickComment={onClickComment}
     />
   )
 }

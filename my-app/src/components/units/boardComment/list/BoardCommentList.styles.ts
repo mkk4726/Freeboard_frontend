@@ -6,6 +6,7 @@ export const ItemWrapper = styled.div`
   padding-top: 20px;
   height: 128px;
   border-bottom: 1px solid gray;
+  cursor: pointer;
 `;
 
 export const FlexWrapper = styled.div`
