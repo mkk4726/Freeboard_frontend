@@ -10,15 +10,14 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
       {props.data?.fetchBoardComments.map((el) => (
         <S.ItemWrapper 
           key={el._id} 
+          onClick={props.onClickComment}
+          id={String(el.writer)}
         >
           <S.FlexWrapper>
             <S.Avatar src="/images/avatar.png" />
             <S.MainWrapper>
               <S.WriterWrapper>
-                <S.Writer 
-                  onClick={props.onClickComment}
-                  id={String(el.writer)}
-                >
+                <S.Writer>
                   {el.writer}
                 </S.Writer>
               </S.WriterWrapper>

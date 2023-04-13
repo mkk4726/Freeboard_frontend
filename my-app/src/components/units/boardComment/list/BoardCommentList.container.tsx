@@ -43,7 +43,7 @@ export default function BoardCommentList() {
 
   const onClickComment = (event: MouseEvent<HTMLDivElement>) => {
     console.log(event)
-    alert(`${event.target.id}님이 작성한 글입니다.`);
+    alert(`${event.currentTarget.id}님이 작성한 글입니다.`);
   }
 
   return (
