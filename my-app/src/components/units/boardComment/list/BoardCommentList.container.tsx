@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent } from "react";
+import { MouseEvent } from "react";
 import BoardCommentListUI from "./BoardCommentList.presenter"
 import { FETCH_BOARD_COMMENTS, DELETE_BOARD_COMMENT } from "./BoardCommentList.queries"
 import { useMutation, useQuery } from "@apollo/client"

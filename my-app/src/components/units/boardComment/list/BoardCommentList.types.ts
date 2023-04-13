@@ -1,5 +1,5 @@
-import { ChangeEvent, MouseEvent } from "react";
-import { IMutation, IQuery } from "../../../../commons/types/generated/types";
+import { MouseEvent } from "react";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IBoardCommentListUIProps {
   data? : Pick<IQuery, "fetchBoardComments">;
