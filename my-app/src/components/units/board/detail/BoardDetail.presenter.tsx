@@ -1,6 +1,7 @@
 import * as e from "./BoardDetail.styles";
+import { IBoardDetailUIProps } from "./BoardDetail.types";
 
-export default function BoardDetailUI({data, onClickList, onClickEdit}) {
+export default function BoardDetailUI({data, onClickList, onClickEdit}: IBoardDetailUIProps) {
   return(
     <e.Wrapper>
       <e.CardWrapper>

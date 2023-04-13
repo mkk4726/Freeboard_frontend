@@ -1,23 +1,33 @@
+import { ChangeEvent, MouseEvent } from "react";
 import BoardCommentListUI from "./BoardCommentList.presenter"
 import { FETCH_BOARD_COMMENTS, DELETE_BOARD_COMMENT } from "./BoardCommentList.queries"
 import { useMutation, useQuery } from "@apollo/client"
 import { useRouter } from "next/dist/client/router"
+import { IMutation, IMutationDeleteBoardCommentArgs, IQuery, IQueryFetchBoardCommentsArgs } from "../../../../commons/types/generated/types";
 
 export default function BoardCommentList() {
   const router = useRouter();
   
-  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
-  const {data} = useQuery(FETCH_BOARD_COMMENTS, {
-    variables: { boardId : router.query.boardId }
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
+
+  const {data} = useQuery<
+    Pick<IQuery, "fetchBoardComments">,
+    IQueryFetchBoardCommentsArgs
+  >(FETCH_BOARD_COMMENTS, {
+    variables: { boardId : String(router.query.boardId) }
   });
 
-  const onClickDelete = async (event) => {
+  const onClickDelete = async (event: MouseEvent<HTMLImageElement>) => {
+    console.log(event);
     const myPassword = prompt("비밀번호를 입력하세요.")
     try {
       await deleteBoardComment({
         variables: {
           password: myPassword,
-          boardCommentId: event.target.id
+          boardCommentId: event?.target?.id
         },
         refetchQueries : [
           {
@@ -27,7 +37,7 @@ export default function BoardCommentList() {
         ]
       })
     } catch (err) {
-      alert(err.message)
+      if (err instanceof Error) alert(err.message)
     }
   }
 

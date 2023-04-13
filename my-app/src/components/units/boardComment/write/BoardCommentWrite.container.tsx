@@ -3,7 +3,7 @@ import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries"
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries";
 import { useRouter } from "next/dist/client/router"
 import { useMutation } from "@apollo/client"
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 
 export default function BoardCommentWrite() {
 
@@ -14,19 +14,19 @@ export default function BoardCommentWrite() {
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
 
-  const onChangeWriter = (event) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
   }
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   }
 
-  const onChangeContents = (event) => {
+  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContents(event.target.value);
   }
 
-  const onClickWrite = (event) => {
+  const onClickWrite = () => {
     try {
       const result = createBoardComment({
         variables: {
@@ -47,7 +47,7 @@ export default function BoardCommentWrite() {
       })
       alert("등록했습니다.");
     } catch (err) {
-      alert(err.message);
+      if (err instanceof Error) alert(err.message);
     }
   };
 

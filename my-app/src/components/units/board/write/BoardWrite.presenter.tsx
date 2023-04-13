@@ -1,11 +1,16 @@
+import { ChangeEvent } from "react";
+import { IQueryFetchBoardArgs } from "../../../../commons/types/generated/types";
 import * as e from "./BoardWrite.styles";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
+
+
 
 export default function BoardWriteUI({
   handleChangeId, handleChangeTitle, handleChangeContents, handleChangePassword,
   handleClickSignup, handleClickEdit,
   errorId, errorPw, errorTitle, errorContents,
   isEdit, isActive, data
-}) {
+}: IBoardWriteUIProps) {
 
   return (
     <e.Wrapper>
@@ -13,24 +18,37 @@ export default function BoardWriteUI({
       <e.WriterWrapper>
         <e.InputWrapper>
           <e.Label>작성자</e.Label>
-          <e.Writer type="text" placeholder="이름을 적어주세요." onChange={handleChangeId} defaultValue={data?.fetchBoard?.writer}/>
+          <e.Writer 
+              type="text" 
+              placeholder="이름을 적어주세요." 
+              onChange={handleChangeId} 
+              defaultValue={String(data?.fetchBoard?.writer)}/>
           <e.Error>{errorId}</e.Error>
-          
         </e.InputWrapper>
         <e.InputWrapper>
           <e.Label>비밀번호</e.Label>
-          <e.Password type="password" placeholder="비밀번호를 작성해주세요." onChange={handleChangePassword}/>
+          <e.Password 
+              type="password" 
+              placeholder="비밀번호를 작성해주세요." 
+              onChange={handleChangePassword}/>
           <e.Error>{errorPw}</e.Error>
         </e.InputWrapper>
       </e.WriterWrapper>
       <e.InputWrapper>
         <e.Label>제목</e.Label>
-        <e.Subject type="text" placeholder="제목을 작성해주세요." onChange={handleChangeTitle} defaultValue={data?.fetchBoard?.title}/>
+        <e.Subject 
+            type="text" 
+            placeholder="제목을 작성해주세요." 
+            onChange={handleChangeTitle} 
+            defaultValue={data?.fetchBoard?.title}/>
         <e.Error>{errorTitle}</e.Error>
       </e.InputWrapper>
       <e.InputWrapper>
         <e.Label>내용</e.Label>
-        <e.Contents placeholder="내용을 작성해주세요." onChange={handleChangeContents} defaultValue={data?.fetchBoard?.contents}/>
+        <e.Contents 
+            placeholder="내용을 작성해주세요." 
+            onChange={handleChangeContents} 
+            defaultValue={data?.fetchBoard?.contents}/>
         <e.Error>{errorContents}</e.Error>
       </e.InputWrapper>
       <e.InputWrapper>
@@ -43,7 +61,7 @@ export default function BoardWriteUI({
         <e.Address />
       </e.InputWrapper>
       <e.InputWrapper>
-        <e.Label qqq="red">유튜브</e.Label>
+        <e.Label>유튜브</e.Label>
         <e.Youtube placeholder="링크를 복사해주세요." />
       </e.InputWrapper>
       <e.ImageWrapper>

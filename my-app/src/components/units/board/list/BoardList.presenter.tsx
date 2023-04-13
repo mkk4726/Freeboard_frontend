@@ -1,8 +1,9 @@
 import * as S from "./BoardList.styles"
 import { getDate } from "../../../../commons/libraries/utils"
+import { IBoardListUIProps } from "./BoardList.types"
 
 export default function BoardListUI({
-  data, onClickMoveToBoardNew, onClickMoveToBoardDetail}) {
+  data, onClickMoveToBoardNew, onClickMoveToBoardDetail} : IBoardListUIProps) {
   
   console.log(data?.fetchBoards)
 
