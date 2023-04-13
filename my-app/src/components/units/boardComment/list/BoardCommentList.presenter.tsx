@@ -17,7 +17,7 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
             <S.Avatar src="/images/avatar.png" />
             <S.MainWrapper>
               <S.WriterWrapper>
-                <S.Writer>
+                <S.Writer id={"test"}>
                   {el.writer}
                 </S.Writer>
               </S.WriterWrapper>
