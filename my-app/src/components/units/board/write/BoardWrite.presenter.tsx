@@ -1,5 +1,3 @@
-import { ChangeEvent } from "react";
-import { IQueryFetchBoardArgs } from "../../../../commons/types/generated/types";
 import * as e from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 

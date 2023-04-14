@@ -3,8 +3,7 @@ import { useMutation} from "@apollo/client";
 import { useRouter } from "next/dist/client/router";
 import { CREATE_BOARD , UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
-import { Id } from "../list/BoardList.styles";
-import { ICreateBoardInput, IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IQueryFetchBoardArgs, IUpdateBoardInput } from "../../../../commons/types/generated/types";
+import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IUpdateBoardInput } from "../../../../commons/types/generated/types";
 import { IBoardWriteProps } from "./BoardWrite.types";
 
 
@@ -111,7 +110,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
     if (id && password && title && contents) {
       try {
-        let result = await myCreateBoard({
+        const result = await myCreateBoard({
           variables: { 
             createBoardInput : {
               writer: id,
@@ -124,7 +123,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
         console.log(result);
         // alert(result.data.createBoard.message);
         alert("생성한 페이지로 이동합니다.")
-        router.push(`/boards/${result.data?.createBoard._id}`);
+        void router.push(`/boards/${String(result.data?.createBoard._id)}`);
 
       } catch(err) {
         console.log(err);
@@ -139,7 +138,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (title) updateBoardInput.title = title;
       if (contents) updateBoardInput.contents = contents;
 
-      let result = await myUpdateBoard({
+      const result = await myUpdateBoard({
         variables: {
           boardId: String(router.query.boardId),
           password,
@@ -149,7 +148,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       console.log(result);
       // alert(result.data.createBoard.message);
       alert("수정한 페이지로 이동합니다.")
-      router.push(`/boards/${result.data?.updateBoard._id}`);
+      void router.push(`/boards/${String(result.data?.updateBoard._id)}`);
     } catch(err) {
       console.log(password);
 

@@ -28,7 +28,7 @@ export default function BoardCommentWrite() {
 
   const onClickWrite = () => {
     try {
-      const result = createBoardComment({
+      void createBoardComment({
         variables: {
           createBoardCommentInput : {
             writer,

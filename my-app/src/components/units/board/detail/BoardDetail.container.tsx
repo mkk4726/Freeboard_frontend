@@ -13,11 +13,11 @@ export default function BoardDetail() {
   >(FETCH_BORDER, {variables: { boardId : String(router.query.boardId) }})
 
   const onClickList = () => {
-    router.push('/boards')
+    void router.push('/boards')
   }
 
   const onClickEdit = () => {
-    router.push(`/boards/${router.query.boardId}/edit`)
+    void router.push(`/boards/${String(router.query.boardId)}/edit`)
   }
 
   return (
