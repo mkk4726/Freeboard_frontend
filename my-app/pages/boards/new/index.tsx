@@ -3,6 +3,6 @@ import BoardWrite from "../../../src/components/units/board/write/BoardWrite.con
 export default function BoardWriteUI() {
   
   return (
-    <BoardWrite isEdit={false}/>
+    <BoardWrite isEdit={false} />
   );
 }

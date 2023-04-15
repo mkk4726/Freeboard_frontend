@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+// import { EnvironmentOutlined} from "@ant-design/icons"
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -47,6 +48,12 @@ export const Writer = styled.div``;
 
 export const CreatedAt = styled.div``;
 
+export const Icons = styled.div`
+  color: orange;
+  font-size: 30px;
+`
+
+
 export const Body = styled.div`
   width: 100%;
   min-height: 800px;
@@ -59,7 +66,27 @@ export const Title = styled.h1`
 export const Contents = styled.div`
   padding-top: 40px;
   padding-bottom: 120px;
+  min-height: 400px;
 `;
+
+export const Rate = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 20px;
+`
+
+export const Like = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: orange;
+  padding-right: 30px;
+`
+
+export const DisLike = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 export const BottomWrapper = styled.div`
   display: flex;

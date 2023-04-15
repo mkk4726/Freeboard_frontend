@@ -5,6 +5,7 @@ import { CREATE_BOARD , UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IUpdateBoardInput } from "../../../../commons/types/generated/types";
 import { IBoardWriteProps } from "./BoardWrite.types";
+import { Address } from "react-daum-postcode";
 
 
 export default function BoardWrite(props: IBoardWriteProps) {
@@ -17,6 +18,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [errorPw, setErrorPw] = useState("")
   const [errorTitle, setErrorTitle] = useState("")
   const [errorContents, setErrorContents] = useState("")
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
+
 
   const [myCreateBoard] = useMutation<
     Pick<IMutation, "createBoard">, // output 
@@ -116,7 +123,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
               writer: id,
               password,
               title,
-              contents 
+              contents ,
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail
+              }
             }
           }
         });
@@ -137,6 +149,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
       const updateBoardInput: IUpdateBoardInput = {}
       if (title) updateBoardInput.title = title;
       if (contents) updateBoardInput.contents = contents;
+      if (zipcode || address || addressDetail) {
+        updateBoardInput.boardAddress = {};
+        if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;        
+        if (address) updateBoardInput.boardAddress.address = address;
+        if (addressDetail) 
+          updateBoardInput.boardAddress.addressDetail = addressDetail;
+      }
 
       const result = await myUpdateBoard({
         variables: {
@@ -157,21 +176,42 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
+  const onToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  }
+
+  const handleComplete = (address : Address) => {
+    setAddress(address.address);
+    setZipcode(address.zonecode)
+    setIsOpen((prev) => !prev);
+  }
+
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event?.target.value);
+  }
+
   return (
     <BoardWriteUI 
-    data={props.data}
-    isActive={isActive}
-    handleChangeId={handleChangeId}
-    handleChangeTitle={handleChangeTitle}
-    handleChangeContents={handleChangeContents}
-    handleChangePassword={handleChangePassword}
-    handleClickSignup={handleClickSignup}
-    errorId={errorId}
-    errorPw={errorPw}
-    errorTitle={errorTitle}
-    errorContents={errorContents}
-    isEdit={props.isEdit}
-    handleClickEdit={handleClickEdit}
+      data={props.data}
+      isActive={isActive}
+      errorId={errorId}
+      errorPw={errorPw}
+      errorTitle={errorTitle}
+      errorContents={errorContents}
+      isEdit={props.isEdit}
+      isOpen={isOpen}
+      address={address}
+      zipcode={zipcode}
+      handleChangeId={handleChangeId}
+      handleChangeTitle={handleChangeTitle}
+      handleChangeContents={handleChangeContents}
+      handleChangePassword={handleChangePassword}
+      handleClickSignup={handleClickSignup}
+      handleClickEdit={handleClickEdit}
+      onToggleModal={onToggleModal}
+      handleComplete={handleComplete}
+      onChangeAddressDetail={onChangeAddressDetail}
+      
     />
   )
 }

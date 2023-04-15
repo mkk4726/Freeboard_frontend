@@ -7,28 +7,34 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
 
   return (
     <div>
+      {props.isOpenDeleteModal && (
+        <S.PasswordModal open={true} onOk={props.onClickDelete} onCancel={props.onToggleModal}>
+          <div>비밀번호 입력: </div>
+          <S.PasswordInput 
+            type='password'
+            onChange={props.onChangeDeletePassword}  
+          />
+        </S.PasswordModal>
+      )}
       {props.data?.fetchBoardComments.map((el) => (
         <S.ItemWrapper 
           key={el._id} 
-          onClick={props.onClickComment}
-          id={String(el.writer)}
         >
           <S.FlexWrapper>
             <S.Avatar src="/images/avatar.png" />
-            <S.MainWrapper>
-              <S.WriterWrapper>
-                <S.Writer id={"test"}>
-                  {el.writer}
-                </S.Writer>
-              </S.WriterWrapper>
-              <S.Contents>{el.contents}</S.Contents>
+            <S.MainWrapper id={String(el.writer)} onClick={props.onClickComment}>
+                <S.WriterWrapper>
+                  <S.Writer>{el.writer}</S.Writer>
+                  <S.Star value={el.rating} disabled/>
+                </S.WriterWrapper>
+                <S.Contents>{el.contents}</S.Contents>
             </S.MainWrapper>
             <S.OptionWrapper>
               <S.UpdateIcon src="/images/boardComment/list/option_update_icon.png" />
               <S.DeleteIcon 
                 id={el._id}
                 src="/images/boardComment/list/option_delete_icon.png"
-                onClick={props.onClickDelete}
+                onClick={props.onClickOpenDeleteModal}
               />
             </S.OptionWrapper>
           </S.FlexWrapper>
@@ -36,6 +42,5 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
         </S.ItemWrapper>
       ))}
     </div>
-
-  )
+  );
 }

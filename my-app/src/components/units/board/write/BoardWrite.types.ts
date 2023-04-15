@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
+import { Address } from "react-daum-postcode";
 
 
 export interface IBoardWriteProps {
@@ -9,19 +10,24 @@ export interface IBoardWriteProps {
 
 export interface IBoardWriteUIProps {
   data? : Pick<IQuery, "fetchBoard">
-  handleChangeId : (event: ChangeEvent<HTMLInputElement>) => void;
-  handleChangeTitle : (event: ChangeEvent<HTMLInputElement>) => void; 
-  handleChangeContents : (event: ChangeEvent<HTMLTextAreaElement>) => void; 
-  handleChangePassword : (event: ChangeEvent<HTMLInputElement>) => void; 
-  handleClickSignup : () => void; 
-  handleClickEdit : () => void; 
   errorId : string 
   errorPw : string 
   errorTitle : string 
   errorContents : string 
   isEdit : boolean
   isActive : boolean 
-
+  isOpen : boolean
+  address: string
+  zipcode: string
+  handleChangeId : (event: ChangeEvent<HTMLInputElement>) => void;
+  handleChangeTitle : (event: ChangeEvent<HTMLInputElement>) => void; 
+  handleChangeContents : (event: ChangeEvent<HTMLTextAreaElement>) => void; 
+  handleChangePassword : (event: ChangeEvent<HTMLInputElement>) => void; 
+  handleClickSignup : () => void; 
+  handleClickEdit : () => void; 
+  onToggleModal : () => void;
+  handleComplete : (address: Address) => void;
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ISubmitButtonProps {

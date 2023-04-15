@@ -17,6 +17,7 @@ export default function BoardCommentUI(props : IBoardCommentUIProps) {
           placeholder="비밀번호"
           onChange={props.onChangePassword}
         />
+        <S.Star onChange={props.setStar} />
       </S.InputWrapper>
       <S.ContentsWrapper>
         <S.Contents 
