@@ -2,7 +2,7 @@ import { useRouter } from "next/dist/client/router"
 import { useMutation, useQuery } from "@apollo/client"
 import { FETCH_BOARD, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
 import  BoardDetailUI  from "./BoardDetail.presenter"
-import { IMutation, IMutationCreateBoardArgs, IMutationLikeBoardArgs, IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/generated/types";
+import { IMutation, IMutationLikeBoardArgs, IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/generated/types";
 import { useState } from "react";
 
 

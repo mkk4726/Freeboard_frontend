@@ -1,0 +1,33 @@
+자유게시판
+
+page와 component로 나눠서 재사용성을 높이는 구조.
+
+----------------------------------------------------------------------
+
+1. 전체 리스트를 보여주는 페이지 
+(boards/index.tsx , board/list)
+2. 조회 페이지 
+(boards/[boardId]/index.tsx - direct indexing을 이용한 구조 , board/detail)
+3. 생성 페이지 
+(boards/[boardId]/new/index.tsx , board/new)
+4. 수정 페이지 
+(boards/[boardId]/edit/index.tsx - 생성 페이지를 공유하는 구조 - props.boolean을 이용
+, board/write)
+5. 댓글 생성 기능
+(boards/[boardId]/index.tsx에 추가 , boardComment/write)
+6. 댓글 조회 기능
+(boards/[boardId]/index.tsx에 추가 , boardComment/list)
+
+-----------------------------------------------------------------------
+추가해야하는 것들
+
+1. 유튜브 링크 저장
+boards/new -> boards/write
+2. 조회 페이지에서 전체 row 선택해도 조회가능하도록 (event-bubbling 고려하기)
+3. source code 너무 길어져서, 파일 나누기. refactoring.
+
+
+-------------------------------------------------------------------------
+모르겠는 것들
+1. 따봉 , 왜 gql에 like count 입력하지 않아도 저장이 되는걸까?
+2. 

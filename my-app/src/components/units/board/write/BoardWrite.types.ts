@@ -28,6 +28,7 @@ export interface IBoardWriteUIProps {
   onToggleModal : () => void;
   handleComplete : (address: Address) => void;
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ISubmitButtonProps {
