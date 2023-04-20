@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import Banner from "./banner/banner";
+import LayoutBanner from "./banner";
+import LayoutHeader from "./header";
+import LayoutMenu from "./menu";
 
 interface ILayoutProps {
   children: JSX.Element|JSX.Element[];
@@ -14,7 +16,9 @@ export default function Layout(props:ILayoutProps) {
 
   return (
     <>
-    <Banner />
+    <LayoutHeader />
+    <LayoutBanner />
+    <LayoutMenu />
       <Wrapper>
         {props.children}
       </Wrapper>
