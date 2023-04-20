@@ -1,15 +1,24 @@
-import { MouseEvent } from "react";
-import { IQuery, IQueryFetchBoardsArgs } from "../../../../commons/types/generated/types";
-import BoardListUI from "./BoardList.presenter"
-import { FETCH_BOARDS } from "./BoardList.queries"
+import { MouseEvent, useState } from "react";
+import { IQuery, IQueryFetchBoardsArgs, IQueryFetchBoardsCountArgs } from "../../../../commons/types/generated/types";
+import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.queries"
 import { useQuery } from "@apollo/client"
 import { useRouter } from "next/dist/client/router";
+import BoardListUI from "./BoardList.presenter"
 
 export default function BoardList() {
-  const {data} = useQuery<
+
+  const [startIndex, setStartIndex] = useState(1);
+
+  const {data, refetch} = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
-  >(FETCH_BOARDS);
+  >(FETCH_BOARDS, {
+    variables: {page: startIndex}
+  });
+  const {data:dataBoardsCount} = useQuery<
+    Pick<IQuery, "fetchBoardsCount">,
+    IQueryFetchBoardsCountArgs
+  >(FETCH_BOARDS_COUNT);
 
   const router = useRouter();
 
@@ -22,10 +31,16 @@ export default function BoardList() {
   }
 
   return(
-    <BoardListUI 
+    <>
+    `<BoardListUI 
       data={data}
       onClickMoveToBoardNew={onClickMoveToBoardNew}
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
-    />
+      refetch={refetch}
+      startIndex={startIndex}
+      setStartIndex={setStartIndex}
+      count={dataBoardsCount?.fetchBoardsCount}
+      />
+    </>
   )
 }

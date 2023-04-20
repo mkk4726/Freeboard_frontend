@@ -1,9 +1,11 @@
 import * as S from "./BoardList.styles"
 import { getDate } from "../../../../commons/libraries/utils"
 import { IBoardListUIProps } from "./BoardList.types"
+import Pagination from "../../../../commons/paginations/01/Paginations01.container"
 
 export default function BoardListUI({
-  data, onClickMoveToBoardNew, onClickMoveToBoardDetail} : IBoardListUIProps) {
+  data, onClickMoveToBoardNew, onClickMoveToBoardDetail, refetch,
+  startIndex, setStartIndex, count} : IBoardListUIProps) {
   
   console.log(data?.fetchBoards)
 
@@ -26,11 +28,18 @@ export default function BoardListUI({
       ))}
       <S.LowerLine/>
       <S.Footer>
+        <Pagination
+          refetch={refetch}
+          startIndex={startIndex}
+          setStartIndex={setStartIndex}
+          count={count}
+        />
         <S.Button onClick={onClickMoveToBoardNew}>
           <S.PencilIcon src="/images/board/list/write.png" /> 
           게시물 등록하기
         </S.Button>
       </S.Footer>
     </S.Wrapper>
+    
   )
 }
