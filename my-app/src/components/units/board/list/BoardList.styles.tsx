@@ -27,6 +27,11 @@ export const Board = styled.div`
   width: 100%;
   padding: 20px;
   text-align: center;
+  cursor: pointer;
+
+  :hover {
+    color: blue;
+  }
 `
 
 export const Id = styled.div`
@@ -35,11 +40,6 @@ export const Id = styled.div`
 
 export const Title = styled.div`
   width: 40%;
-  cursor: pointer;
-
-  :hover {
-    color: blue;
-  }
 `
 export const Writer = styled.div`
   width: 15%;

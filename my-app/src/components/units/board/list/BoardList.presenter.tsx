@@ -17,9 +17,9 @@ export default function BoardListUI({
       </S.Header>
       <S.UpperLine/>
       {data?.fetchBoards.map((board) => (
-        <S.Board key={board._id}>
+        <S.Board key={board._id} onClick={onClickMoveToBoardDetail} id={board._id}>
           <S.Id>{String(board._id).slice(-4).toUpperCase()}</S.Id>
-          <S.Title id={board._id} onClick={onClickMoveToBoardDetail}>{board.title}</S.Title>
+          <S.Title id={board._id}>{board.title}</S.Title>
           <S.Writer>{board.writer}</S.Writer>
           <S.Date>{getDate(board.createdAt)}</S.Date>
         </S.Board>
