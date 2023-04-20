@@ -9,7 +9,6 @@ export default function BoardListUI({
 
   return (
     <S.Wrapper>
-      
       <S.Header>
         <S.Id>Id</S.Id>
         <S.Title>title</S.Title>
@@ -33,6 +32,5 @@ export default function BoardListUI({
         </S.Button>
       </S.Footer>
     </S.Wrapper>
-    
   )
 }

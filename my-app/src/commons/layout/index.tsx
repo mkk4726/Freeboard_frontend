@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import Banner from "./banner/banner";
 
 interface ILayoutProps {
@@ -5,11 +6,18 @@ interface ILayoutProps {
 }
 
 export default function Layout(props:ILayoutProps) {
+  
+  const Wrapper = styled.div`
+    display: flex;
+    justify-content: center;
+  `
 
   return (
     <>
-    <Banner></Banner>
-    {props.children}
+    <Banner />
+      <Wrapper>
+        {props.children}
+      </Wrapper>
     </>
   )
 }

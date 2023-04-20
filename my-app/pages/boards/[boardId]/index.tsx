@@ -6,9 +6,11 @@ export default function BoardDetailPage() {
   
   return (
     <>
-      <BoardDetail />    
-      <BoardCommentWrite />
-      <BoardCommentList />
+      <div>
+        <BoardDetail />    
+        <BoardCommentWrite />
+        <BoardCommentList />
+      </div>
     </>
   )
 }

@@ -14,7 +14,6 @@ export default function Banner() {
   };
 
   const Img = styled.img`
-    
   `
 
   return (

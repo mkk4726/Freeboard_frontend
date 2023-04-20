@@ -1,9 +1,10 @@
-import { AppProps } from 'next/app'
 // import '../styles/globals.css'
-import ApolloSetting from '../src/commons/Apollo'
+import { AppProps } from 'next/app'
 import { Global } from '@emotion/react'
 import { globalStyles } from '../src/commons/styles'
 import Layout from '../src/commons/layout'
+import ApolloSetting from '../src/commons/Apollo'
+
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -13,6 +14,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-      </ApolloSetting>
+    </ApolloSetting>
   )
 }
