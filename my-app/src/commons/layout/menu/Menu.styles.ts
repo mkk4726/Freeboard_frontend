@@ -7,10 +7,16 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 `
 
 export const Page = styled.div`
   padding: 30px;
+  cursor: pointer;
+
+  :hover {
+    color: orange;
+  }
 `
 
 export const Contour = styled.span`

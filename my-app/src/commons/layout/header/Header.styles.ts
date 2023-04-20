@@ -11,6 +11,10 @@ export const LeftWrapper = styled.div`
   font-size: 30px;
 `
 
+export const Title = styled.div`
+  cursor: pointer;
+`
+
 export const RightWrapper = styled.div`
 `
 
@@ -19,6 +23,8 @@ export const LoginButton = styled.button`
   border: none;
   background: none;
   font-weight: 1000;
+
+  cursor: pointer;
 `
 
 export const SignupButton = styled.button`
@@ -27,4 +33,6 @@ export const SignupButton = styled.button`
   padding: 5px;
   background-color: yellow;
   font-weight: 1000;
+  cursor: pointer;
+
 `
