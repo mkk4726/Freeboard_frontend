@@ -50,6 +50,12 @@ export default function BoardCommentWrite() {
     } catch (err) {
       if (err instanceof Error) alert(err.message);
     }
+
+    // 초기화, 다시 짜야됨.
+    // setWriter("");
+    // setContents("");
+    // setPassword("");
+    // setStar(0);
   };
 
   return (

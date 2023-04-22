@@ -5,7 +5,7 @@ export const ItemWrapper = styled.div`
   width: 1200px;
   margin: 0px 100px;
   padding-top: 20px;
-  height: 128px;
+  height: 100%;
   border-bottom: 1px solid gray;
   cursor: pointer;
 `;
@@ -40,6 +40,14 @@ export const Star = styled(Rate)`
   padding-left: 20px;
 `
 export const Contents = styled.div``;
+
+export const EditContents = styled.textarea`
+  display: block;
+  margin-bottom: 10px;
+`
+
+export const InputPassword = styled.input`
+`
 
 export const OptionWrapper = styled.div`
   display: flex;
