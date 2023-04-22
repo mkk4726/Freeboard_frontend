@@ -29,11 +29,13 @@ export default function BoardCommentList() {
   >(DELETE_BOARD_COMMENT);
 
   // 댓글 조회 gql
-  const {data} = useQuery<
+  const {data, fetchMore} = useQuery<
     Pick<IQuery, "fetchBoardComments">,
     IQueryFetchBoardCommentsArgs
   >(FETCH_BOARD_COMMENTS, {
-    variables: { boardId : router.query.boardId }
+    variables: {
+      page: 0,  
+      boardId : router.query.boardId }
   });
 
   // 댓글 수정 gql
@@ -141,6 +143,23 @@ export default function BoardCommentList() {
     setInputPassword(event.currentTarget.value);
   }
 
+  // 무한 스크롤 onLoad func
+  const onLoadMore = () => {
+    if (!data) return;
+
+    void fetchMore ({
+      variables: { page: Math.ceil(data.fetchBoardComments.length / 10) + 1},
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchBoardComments)
+          return {fetchBoardComments : [...prev.fetchBoardComments]}
+
+        return {
+          fetchBoardComments: [...prev.fetchBoardComments, ...fetchMoreResult.fetchBoardComments],
+        };
+      },
+    });
+  }
+
 
   return (
     <BoardCommentListUI 
@@ -157,6 +176,7 @@ export default function BoardCommentList() {
       onChangeEditContentsHandler={onChangeEditContentsHandler}
       onChangeInputPasswordHandler={onChangeInputPasswordHandler}
       setStar={setStar}
+      onLoadMore={onLoadMore}
     />
   )
 }

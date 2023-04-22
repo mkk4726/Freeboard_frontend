@@ -15,4 +15,5 @@ export interface IBoardCommentListUIProps {
   isOpenDeleteModal: boolean;
   onToggleModal: () => void;
   myIndex: Array<false>;
+  onLoadMore: () => void;
 }
