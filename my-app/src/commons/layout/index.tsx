@@ -19,9 +19,9 @@ export default function Layout(props:ILayoutProps) {
     <LayoutHeader />
     <LayoutBanner />
     <LayoutMenu />
-      <Wrapper>
-        {props.children}
-      </Wrapper>
+    <Wrapper>
+      {props.children}
+    </Wrapper>
     </>
   )
 }

@@ -14,6 +14,7 @@ export default function LayoutMenu() {
     {id:"/freeboard", title:"자유게시판"},
     {id:"/usedMarket", title:"중고마켓"},
     {id:"/myPage", title:"마이페이지"},
+    {id:"/catfacts", title:"FactsAboutCats"}
   ]
   
   return (
