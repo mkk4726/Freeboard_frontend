@@ -1,5 +1,5 @@
 import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore/lite"
-import { firebaseApp } from "../../../../pages/_app";
+import { firebaseApp } from "../../../commons/libraries/firebase";
 import { ChangeEvent, useEffect, useState } from "react";
 import MemoUI from "./Memo.presenter";
 
