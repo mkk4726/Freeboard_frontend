@@ -14,6 +14,8 @@ export default function BoardDetail() {
     IQueryFetchBoardArgs // 들어가는 값
   >(FETCH_BOARD, {variables: { boardId : String(router.query.boardId) }})
 
+  console.log(data);
+  
   const onClickList = () => {
     void router.push('/boards')
   }

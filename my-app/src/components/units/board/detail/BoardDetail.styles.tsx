@@ -108,3 +108,11 @@ export const Button = styled.button`
     border-color: white;
   }
 `;
+
+export const ImageWrapper = styled.div`
+  
+`
+
+export const Image = styled.img`
+  
+`

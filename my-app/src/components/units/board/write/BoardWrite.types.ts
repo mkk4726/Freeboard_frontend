@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, MutableRefObject } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { Address } from "react-daum-postcode";
 
@@ -19,6 +19,8 @@ export interface IBoardWriteUIProps {
   isOpen : boolean
   address: string
   zipcode: string
+  inputEl: MutableRefObject<any>
+  imgUrls: string[]
   handleChangeId : (event: ChangeEvent<HTMLInputElement>) => void;
   handleChangeTitle : (event: ChangeEvent<HTMLInputElement>) => void; 
   handleChangeContents : (event: ChangeEvent<HTMLTextAreaElement>) => void; 
@@ -29,6 +31,7 @@ export interface IBoardWriteUIProps {
   handleComplete : (address: Address) => void;
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeFileUrls: (fileUrl: string, index: number) => void;
 }
 
 export interface ISubmitButtonProps {

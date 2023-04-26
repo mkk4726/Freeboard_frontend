@@ -14,8 +14,9 @@ export const FETCH_BOARD = gql`
         address
         addressDetail
       }
-      contents,
+      contents
       createdAt
+      images
     }
   }
 `;

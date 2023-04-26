@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { useMutation} from "@apollo/client";
 import { useRouter } from "next/dist/client/router";
 import { CREATE_BOARD , UPDATE_BOARD } from "./BoardWrite.queries";
@@ -14,6 +14,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [title, setTitle] = useState("")
   const [contents, setContents] = useState("")
   const [password, setPassword] = useState("")
+  const [imgUrls, setImgUrls] = useState(["", "", ""]); 
   // modal , for conditional rendering
   const [isOpen, setIsOpen] = useState(false);
   const [zipcode, setZipcode] = useState("");
@@ -28,6 +29,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
   // control activation of button
   const [isActive, setIsActive] = useState(false);
 
+  const inputEl = useRef();
+
   const router = useRouter();
   // gql -> function using useMutation
   // create Board
@@ -40,6 +43,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     Pick<IMutation, "updateBoard">, 
     IMutationUpdateBoardArgs
   >(UPDATE_BOARD);
+
 
   // define handler functions
   // for onChange Id event
@@ -157,7 +161,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
                 address,
                 addressDetail
               },
-              youtubeUrl
+              youtubeUrl,
+              images: imgUrls
             }
           }
         });
@@ -185,13 +190,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
         if (addressDetail) 
           updateBoardInput.boardAddress.addressDetail = addressDetail;
       }
+      updateBoardInput.images = imgUrls;
 
       const result = await myUpdateBoard({
         // update variables
         variables: {
           boardId: String(router.query.boardId),
           password,
-          updateBoardInput
+          updateBoardInput,
       }});
       // alert(result.data.createBoard.message);
       alert("수정한 페이지로 이동합니다.")
@@ -202,6 +208,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
       console.log(err);
       alert(err);
     }
+  }
+
+  // funcs about img
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...imgUrls];
+    newFileUrls[index] = fileUrl;
+    setImgUrls(newFileUrls);
   }
 
 
@@ -217,6 +230,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       isOpen={isOpen}
       address={address}
       zipcode={zipcode}
+      inputEl={inputEl}
+      imgUrls={imgUrls}
       handleChangeId={handleChangeId}
       handleChangeTitle={handleChangeTitle}
       handleChangeContents={handleChangeContents}
@@ -227,6 +242,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       handleComplete={handleComplete}
       onChangeAddressDetail={onChangeAddressDetail}
       onChangeYoutubeUrl={onChangeYoutubeUrl}
+      onChangeFileUrls={onChangeFileUrls}
     />
   )
 }

@@ -51,6 +51,16 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
             </e.DisLike>
           </e.Rate>
         </e.Body>
+        <e.ImageWrapper>
+          {props.data?.fetchBoard.images
+            ?.filter((el: string) => el !== "")
+            .map((el: string) => (
+              <e.Image 
+                key={el}
+                src={`https://storage.googleapis.com/${el}`}
+              />
+            ))}
+        </e.ImageWrapper>
       </e.CardWrapper>
       <e.BottomWrapper>
         <e.Button onClick={props.onClickList}>목록으로</e.Button>
