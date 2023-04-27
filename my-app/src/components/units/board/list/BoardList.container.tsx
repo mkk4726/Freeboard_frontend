@@ -17,7 +17,7 @@ export default function BoardList() {
   >(FETCH_BOARDS, {
     variables: {page: startIndex}
   });
-  const {data:dataBoardsCount} = useQuery<
+  const {data:dataBoardsCount, refetch: refetchCount} = useQuery<
     Pick<IQuery, "fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT);
@@ -39,6 +39,7 @@ export default function BoardList() {
       onClickMoveToBoardNew={onClickMoveToBoardNew}
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
       refetch={refetch}
+      refetchCount={refetchCount}
       startIndex={startIndex}
       setStartIndex={setStartIndex}
       count={dataBoardsCount?.fetchBoardsCount}

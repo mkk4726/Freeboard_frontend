@@ -1,5 +1,5 @@
 import React, { MouseEvent } from "react";
-import { IQuery, IQueryFetchBoardsArgs } from "../../../../commons/types/generated/types";
+import { IQuery, IQueryFetchBoardsArgs, IQueryFetchBoardsCountArgs } from "../../../../commons/types/generated/types";
 import { ApolloQueryResult } from "@apollo/client";
 
 export interface IBoardListUIProps {
@@ -9,6 +9,9 @@ export interface IBoardListUIProps {
   refetch: (
     variables?: Partial<IQueryFetchBoardsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>;
+  refetchCount: (
+    variables?: Partial<IQueryFetchBoardsCountArgs> | undefined
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoardsCount">>>;
   setStartIndex: React.Dispatch<React.SetStateAction<number>>;
   startIndex: number;
   count?:number;

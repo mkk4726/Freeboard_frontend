@@ -32,6 +32,7 @@ export default function Pagination(props: IPagenationProps) {
       prevPage={prevPage}
       nextPage={nextPage}
       startIndex={props.startIndex}
+      lastpage={lastpage}
     />
   )
 }

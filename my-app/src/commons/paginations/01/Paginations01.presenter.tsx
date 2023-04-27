@@ -6,7 +6,7 @@ export default function PaginationUI(props: IPagenationUIProps) {
   return (
     <div>
     <S.PageNumber onClick={props.prevPage}>이전페이지</S.PageNumber>
-    {new Array(10).fill(1).map((_, index) => (
+    {new Array(props.lastpage).fill(1).map((_, index) => (
       <S.PageNumber 
         onClick={props.onClickPage} 
         id={String(props.startIndex + index)}

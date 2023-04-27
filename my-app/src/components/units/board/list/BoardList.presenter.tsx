@@ -7,7 +7,7 @@ import {v4 as uuid4} from "uuid"
 
 export default function BoardListUI({
   data, onClickMoveToBoardNew, onClickMoveToBoardDetail, refetch,
-  startIndex, setStartIndex, count, setKeyword, keyword} : IBoardListUIProps) {
+  startIndex, setStartIndex, count, setKeyword, keyword, refetchCount} : IBoardListUIProps) {
   
   console.log(data?.fetchBoards)
 
@@ -16,6 +16,7 @@ export default function BoardListUI({
       <Search 
         refetch={refetch}
         setKeyword={setKeyword}
+        refetchCount={refetchCount}
       />
       <S.Header>
         <S.Id>Id</S.Id>

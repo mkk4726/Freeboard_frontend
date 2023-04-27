@@ -18,6 +18,7 @@ export interface IPagenationUIProps {
   onClickPage: (event : MouseEvent<HTMLSpanElement>) => void;
   prevPage: () => void;
   nextPage: () => void;
+  lastpage: number;
 }
 
 export interface IPageProps {

@@ -8,6 +8,7 @@ export default function Search(props: ISearchProps) {
   // debouncing
   const getDebounce = _.debounce((value) => {
     void props.refetch({page: 1, search: value});
+    void props.refetchCount({search: value});
     props.setKeyword(value);
   }, 500)
 
