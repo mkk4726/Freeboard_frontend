@@ -12,4 +12,6 @@ export interface IBoardListUIProps {
   setStartIndex: React.Dispatch<React.SetStateAction<number>>;
   startIndex: number;
   count?:number;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  keyword: string;
 }

@@ -6,6 +6,8 @@ import { useRouter } from "next/dist/client/router";
 import BoardListUI from "./BoardList.presenter"
 
 export default function BoardList() {
+  // used in Search Component
+  const [keyword, setKeyword] = useState("");
 
   const [startIndex, setStartIndex] = useState(1);
 
@@ -40,6 +42,8 @@ export default function BoardList() {
       startIndex={startIndex}
       setStartIndex={setStartIndex}
       count={dataBoardsCount?.fetchBoardsCount}
+      setKeyword={setKeyword}
+      keyword={keyword}
       />
     </>
   )
